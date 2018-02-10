@@ -1,7 +1,8 @@
 const db = require('../database').db;
 const repairModel = require('../models/repairModel'); 
-const Usermodel = require('../models/user');
+const userModel = require('../models/user');
 const Joi = require('joi');
+const jwt = require('jsonwebtoken')
 
 
 

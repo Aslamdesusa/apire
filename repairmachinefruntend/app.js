@@ -1,19 +1,17 @@
 var container = $('div.containerr');
 
-$("input#get").click(function(){
+$(window).bind("load", function(){
 	$.ajax({
 		type: 'GET',
 		url: 'http://localhost:8080/get/all/complaint',
 		dataType: 'json',
 		success: function(data){
-			reply("yeah got it")
-			// $.each(data, function(index, item){
-			// 	$.each(item, function(key, value){
-			// 		container.append(key + ': ' + value + '</br>');
-			// 	});
-			// 	container.append('</br></br>')
-			// });
-		}
+			var trHTML = '';
+			for (var i = 0; i < data.data.length; i += 1) {
+            	trHTML = "<tr><td> "+ data.data[i]._id +" </td><td>" + data.data[i].machineid +"</td><td>"+data.data[i].phonenumber+ "</td><td>" +data.data[i].problemmsg + "</td><td>" + data.data[i].createdat + "</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>"
+	        	$('#updatetable').append(trHTML);
+            }     
+	    }
 	});
 })
 
@@ -37,11 +35,13 @@ $(document).ready(function(){
 				type : "POST",
 				data : oneModel,
 				success : function(json){
-							
+					var msgHTMl = '';
+					msgHTMl = "<center><p></p><center>"
+	        		$('#bg').append(msgHTMl);
 					console.log("yeah got it")
 				},
 				error : function(err){
-					alert("err");
+					alert("Pleas fill all this field");
 				}
 			});
 		})

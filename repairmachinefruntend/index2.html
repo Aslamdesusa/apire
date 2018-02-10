@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Complaints</title>
   <meta charset="utf-8">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="shortcut icon" href="img/AIIMS.png" />
 
   <style type="text/css">
     body{
@@ -46,11 +47,6 @@
 
 <div class="containerr"></div>
 
-<div id="form-area">
-  <input id="get" type="submit" value="Get">
-</div>
-
-
 
 <div class="container">
   <input type="text" class="form-control" style="width: 50%;" placeholder="andon.in/manager">
@@ -87,7 +83,7 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="table-responsive">
-        <table class="table table-bordered table-hover">
+        <table class="table table-bordered table-hover" >
           <thead>
             <tr>
               <th>Complaint ID</th>
@@ -104,7 +100,7 @@
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="updatetable">
             <tr>
               <td></td>
               <td></td>
