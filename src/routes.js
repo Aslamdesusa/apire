@@ -75,31 +75,42 @@ const routes = [
             }
         },
         handler: function(request, reply){
-           var newUser = new Usermodel({
-               "firstname" : request.payload.firstname,
-               "lastname" : request.payload.lastname,
-               "username" : request.payload.username,
-               "password" : request.payload.password,
-               "emailid" : request.payload.emailid,
-               "gender" : request.payload.gender,
-               "createat":new Date(),
-               "contactNumber" : request.payload.contactNumber,
-           });
+           userModel.find({}, function(err, data){
+                console.log(data.length)
 
-           newUser.save(function(err, data){
-               if (err){
-               	throw (err)
-                   console.log(err);
-               } else{
-                   reply({
-                        statusCode: 200,
-                        message: 'User created Successfully',
-                        data: data
-                    });   
-               }
-           });
-       }
-    },
+                if (data.length == 0){
+                    var newUser = new userModel({
+                       "firstname" : request.payload.firstname,
+                       "lastname" : request.payload.lastname,
+                       "username" : request.payload.username,
+                       "password" : request.payload.password,
+                       "emailid" : request.payload.emailid,
+                       "gender" : request.payload.gender,
+                       "createat":new Date(),
+                       "contactNumber" : request.payload.contactNumber,
+                   });
+
+                   newUser.save(function(err, data){
+                       if (err){
+                        throw (err)
+                           console.log(err);
+                       } else{
+                           reply({
+                                statusCode: 200,
+                                message: 'User created Successfully',
+                                data: data
+                            });
+                       }
+                   });
+                } else {
+                    reply({
+                        'data': "There should be only one superuser and You can't signup"
+            
+                });
+            }
+        })
+    } 
+    },     
 	{
 		method: 'POST',
 		path: '/complaint/submition/form',
