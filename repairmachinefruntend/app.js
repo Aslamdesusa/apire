@@ -16,7 +16,6 @@ $(window).bind("load", function(){
 })
 
 
-
 $(document).ready(function(){
 	$('#save').click(function(){
 
@@ -47,4 +46,6 @@ $(document).ready(function(){
 		})
 });
 
-
+$("#login").click(function(){
+    console.log('hello');
+   });
