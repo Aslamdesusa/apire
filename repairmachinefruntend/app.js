@@ -8,13 +8,20 @@ $(window).bind("load", function(){
 		success: function(data){
 			var trHTML = '';
 			for (var i = 0; i < data.data.length; i += 1) {
-            	trHTML = "<tr><td> "+ data.data[i]._id +" </td><td>" + data.data[i].machineid +"</td><td>"+data.data[i].phonenumber+ "</td><td>" +data.data[i].problemmsg + "</td><td>" + data.data[i].createdat + "</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>"
+            	trHTML = "<tr><td> "+ data.data[i]._id +" </td><td>" + data.data[i].machineid +"</td><td>"+data.data[i].phonenumber+ "</td><td>" +data.data[i].problemmsg + "</td><td>" + data.data[i].createdat + "</td><td></td><td></td><td></td><td></td><td></td><td></td><td><button class='edit-button'>Edit</button><button class='delete-button'>Delete</button></td></tr>"
 	        	$('#updatetable').append(trHTML);
             }     
 	    }
 	});
 })
 
+// DELETE
+
+$(document).ready(function(){
+	$('button#btnn').click(function(){
+		console.log('I am hear');
+	});
+})
 
 $(document).ready(function(){
 	$('#save').click(function(){
@@ -46,6 +53,6 @@ $(document).ready(function(){
 		})
 });
 
-$("#login").click(function(){
-    console.log('hello');
-   });
+// $("#login").click(function(){
+//     console.log('hello');
+//    });

@@ -202,6 +202,36 @@ const routes = [
 			});
 		}
 	},
+    {
+        method: 'DELETE',
+        path: '/delete/specific/userById/{id}',
+        config:{
+            tags:['api'],
+            description:"Admin can delete specific user of user",
+            notes:"In this route admin can can delete specific user by user id",
+            validate:{
+                params:{
+                    id:Joi.string().required()
+                }
+            }
+        },
+        handler: function(request, reply){
+            userModel.findOneAndRemove({ _id: request.params.id }, function(err){
+                if (err) {
+                    reply({
+                        StatusCode: 400,
+                        message: 'something went wrong....',
+                        data: err
+                    });
+                }else{
+                    reply({
+                        StatusCode: 200,
+                        message: 'user deletec Successfully',
+                    });
+                }
+            });
+        }
+    },    
 	{
 		method: 'PUT',
 		path: '/update/specific/complaintById/{id}',
