@@ -41,15 +41,38 @@
       padding-top: 140px;
       font-size: 14px;
     }
+    .header {
+      position: fixed;
+      width: 100%;
+    }
+    .progress-container {
+      width: 97%;
+      margin-top: -20px;
+      height: 5px;
+      background: #ccc;
+    }
+
+    .progress-bar {
+      height: 5px;
+      background: #4caf50;
+      width: 0%;
+    }
   </style>
 </head>
 <body>
+  <div class="header">
+  <div class="progress-container">
+    <div class="progress-bar" id="myBar"></div>
+  </div>  
+</div>
+ <div style="width: 80px;" class="pull-right">
+        <button id="bloding" align="right" style="outline: none; margin-bottom: 20px;" type="button" class="btn btn-danger">Log out</button>
+  </div>
 
 <div class="containerr"></div>
 
-
 <div class="container">
-  <input type="text" class="form-control" style="width: 50%;" placeholder="andon.in/manager">
+  <!-- <input type="text" class="form-control" style="width: 50%;" placeholder="andon.in/manager"> -->
     <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
       <div class="col-md-2">
         <button id="btncom" type="button" class="btn btn-info">Complaints</button>
@@ -64,23 +87,28 @@
       <div class="col-md-2">
         <button type="button" class="btn btn-info">Email Addresses</button>
       </div>
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-1">
+      </div>
+      
     </div>
     <div class="row">
       <div class="col-md-8">
-        <p>On login, Automatically opens on complaints page with filter on open, and sorted<br> by date. Sort icons on every column header, pagination, filter</p>
       </div>
       <div class="col-md-2">
         <button style="margin: 5px;" type="button" class="btn btn-primary">Filter By</button>
       </div>
       <div class="col-md-2">
-        <button style="margin: 5px;" type="button" class="btn btn-primary">Add Complaint</button>
+        <button style="margin: 5px;" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addComplaint" data-whatever="@mdo">Add Complaint</button>
       </div>
     </div>
 
 
+
 <!-- ==================================================================================================== -->
 
-
+<!-- DELETE MODEL BOX -->
 
 <!-- Modalbox here -->
     <div class="container">
@@ -94,7 +122,7 @@
           <h4 class="modal-title">Delete Entry</h4>
         </div>
         <div class="modal-body">
-          <p>Machin Id.</p>
+          <p>Machin Id.</p><input type="text" name="Machinid">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger">Delete</button>
@@ -107,6 +135,7 @@
 
 <!-- ========================================================================================================== -->
 
+<!-- EDIT MODEL BOX -->
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -140,6 +169,41 @@
   </div>
 </div>
 
+<!-- ===================================================================================================== -->
+
+
+<!-- ADD COMPLAINT BY SUPER USER MODEL BOX-->
+<div class="modal fade" id="addComplaint" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ADD COMPLAINT</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Machine ID</label>
+            <input type="text" class="form-control" id="MachineID">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Phone Number</label>
+            <input type="text" class="form-control" id="PhoneNumber">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Comment</label>
+            <textarea class="form-control" id="CommentMsg"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button id="AddComplaint" type="button" class="btn btn-primary">Save Change</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -147,6 +211,7 @@
 
 <!-- ====================================================================================================== -->
 
+<input style="outline: none; margin: 20px 20px 20px 20px; width: 40%;" id="myInput" type="text" placeholder="Search..">
 
 <div class="container">
   <div class="row">

@@ -13,9 +13,13 @@ $('#login').click(function(){
 			type : "POST",
 			data : userdetails,
 			success : function(result){
-				location.href = "file:///home/navgurukul/Documents/apire/repairmachinefruntend/index2.html"
-				console.log("user success")
-				console.log(result);
+				if (result.data == "success"){
+					location.href = "index2.html"
+				} else {
+					alert("you have entered wrong information please correct them!")
+					location.reload()
+				}
+				
 			},
 			error : function(err){
 				console.log(err);

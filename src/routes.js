@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken')
 
 
 
+
 const routes = [
 	{
         method:'POST',
@@ -47,6 +48,7 @@ const routes = [
                          reply( {
                             token,
                             userid: data[0]['_id'],
+                            data: "success"
                         } );
                     }
                 }
