@@ -8,20 +8,21 @@ $(window).bind("load", function(){
 		success: function(data){
 			var trHTML = '';
 			for (var i = 0; i < data.data.length; i += 1) {
-            	trHTML = "<tr><td> "+ data.data[i]._id +" </td><td>" + data.data[i].machineid +"</td><td>"+data.data[i].phonenumber+ "</td><td>" +data.data[i].problemmsg + "</td><td>" + data.data[i].createdat + "</td><td></td><td></td><td></td><td></td><td></td><td></td><td><button id='btnn' style='font-size: 12px; padding-right: 10px; padding: 2px !important; outline: none;' type='button' class='btn btn-danger btn-lg' data-toggle='modal' data-target='#myModal'>Delete</button><button style='font-size: 12px; margin-top: 5px; padding: 0px !important; outline: none;'type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@mdo'>Edit</button></td></tr>"
+            	trHTML = "<tr><td> "+ data.data[i]._id +" </td><td>" + data.data[i].machineid +"</td><td>"+data.data[i].phonenumber+ "</td><td>" +data.data[i].problemmsg + "</td><td>" + data.data[i].createdat + "</td><td></td><td></td><td></td><td></td><td></td><td></td><td><button id='btnnn' style='font-size: 12px; padding-right: 10px; padding: 2px !important; outline: none;' type='button' class='btn btn-danger btn-lg' data-toggle='modal' data-target='#myModal'>Delete</button><button style='font-size: 12px; margin-top: 5px; padding: 0px !important; outline: none;'type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@mdo'>Edit</button></td></tr>"
 	        	$('#updatetable').append(trHTML);
             }     
 	    }
 	});
 })
 
-// POST AND CHECK PHONE NUMBER
 
-$(document).ready(function(){
-	$('button#btnn').click(function(){
-		console.log('I am hear');
-	});
-})
+
+$('table').on('click', '#btnnn', function(){
+	console.log('button clicked');
+});
+
+
+// POST AND CHECK PHONE NUMBER
 
 $(document).ready(function(){
 	$('#save').click(function(){
