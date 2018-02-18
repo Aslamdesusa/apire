@@ -8,7 +8,7 @@ $(window).bind("load", function(){
 		success: function(data){
 			var trHTML = '';
 			for (var i = 0; i < data.data.length; i += 1) {
-            	trHTML = "<tr><td> "+ data.data[i]._id +" </td><td>" + data.data[i].machineid +"</td><td>"+data.data[i].phonenumber+ "</td><td>" +data.data[i].problemmsg + "</td><td>" + data.data[i].createdat + "</td><td></td><td></td><td></td><td></td><td></td><td></td><td><button id='btnnn' style='font-size: 12px; padding-right: 10px; padding: 2px !important; outline: none;' type='button' class='btn btn-danger btn-lg' data-toggle='modal' data-target='#myModal'>Delete</button><button style='font-size: 12px; margin-top: 5px; padding: 0px !important; outline: none;'type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@mdo'>Edit</button></td></tr>"
+            	trHTML = "<tr class='id'><td> "+ data.data[i]._id +" </td><td>" + data.data[i].machineid +"</td><td>"+data.data[i].phonenumber+ "</td><td>" +data.data[i].problemmsg + "</td><td>" + data.data[i].createdat + "</td><td></td><td></td><td></td><td></td><td></td><td></td><td><button id='btnnn' style='font-size: 12px; padding-right: 10px; padding: 2px !important; outline: none;' type='button' class='btn btn-danger btn-lg' data-toggle='modal' data-target='#myModal'>Delete</button><button style='font-size: 12px; margin-top: 5px; padding: 0px !important; outline: none;'type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@mdo'>Edit</button></td></tr>"
 	        	$('#updatetable').append(trHTML);
             }     
 	    }
@@ -17,8 +17,19 @@ $(window).bind("load", function(){
 
 
 
+
 $('table').on('click', '#btnnn', function(){
-	console.log('button clicked');
+	var rowEl = $(this).closest('tr');
+	var id = rowEl.find('.id').val();
+	console.log(id);
+	$.ajax({
+		url: '/delete/specific/complaintById/'+id,
+		method: 'DELETE',
+		contentType: 'aplication/json',
+		success: function(response){
+			console.log(response);
+		}
+	});
 });
 
 
@@ -130,10 +141,13 @@ $(function (){
 
 // SEARCH
   $(document).ready(function(){
-  $("#myInput").on("keyup", function() {
+  $("#sort-news").on("click", function() {
     var value = $(this).val().toLowerCase();
     $("#updatetable tr").filter(function() {
       $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      if (value == 'all') {
+      	location.reload();
+      }
     });
   });
 });
