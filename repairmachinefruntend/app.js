@@ -8,7 +8,11 @@ $(window).bind("load", function(){
 		success: function(data){
 			var trHTML = '';
 			for (var i = 0; i < data.data.length; i += 1) {
+<<<<<<< HEAD
             	trHTML = "<tr class='id'><td> "+ data.data[i]._id +" </td><td>" + data.data[i].machineid +"</td><td>"+data.data[i].phonenumber+ "</td><td>" +data.data[i].problemmsg + "</td><td>" + data.data[i].createdat + "</td><td></td><td></td><td></td><td></td><td></td><td></td><td><button id='btnnn' style='font-size: 12px; padding-right: 10px; padding: 2px !important; outline: none;' type='button' class='btn btn-danger btn-lg' data-toggle='modal' data-target='#myModal'>Delete</button><button style='font-size: 12px; margin-top: 5px; padding: 0px !important; outline: none;'type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal' data-whatever='@mdo'>Edit</button></td></tr>"
+=======
+            	trHTML = "<tr id=" + data.data[i]._id + "><td id='1'> "+ data.data[i]._id +" </td><td id='2' data-id1="+ data.data[i].machineid + ">" + data.data[i].machineid +"</td><td id='3' data-id2="+data.data[i].phonenumber+ ">"+data.data[i].phonenumber+ "</td><td id='4' data-id3="+data.data[i].problemmsg + ">" +data.data[i].problemmsg + "</td><td>" + data.data[i].createdat + "</td><td></td><td></td><td></td><td></td><td></td><td></td><td><button data-id=" + data.data[i]._id + " style='font-size: 12px; padding-right: 10px; padding: 2px !important; outline: none;' type='button' class='btn btn-danger btn-lg delete' data-toggle='modal'>Delete</button><button style='font-size: 12px; margin-top: 5px; padding: 0px !important; outline: none;'type='button' class='btn btn-primary edit' data-toggle='modal'  data-whatever='@mdo' data-id=" + data.data[i]._id + ">Edit</button></td></tr>"
+>>>>>>> 404a3ef45e8d98295dcb84e529db81e2ebb9aa9f
 	        	$('#updatetable').append(trHTML);
             }     
 	    }
@@ -16,7 +20,71 @@ $(window).bind("load", function(){
 })
 
 
+// delete a specific complaint from table
 
+$('table').on('click', '.delete', function(e){
+        e.preventDefault();
+        var dataId = $(this).attr("data-id");
+        console.log(dataId);
+        $.ajax({
+		    url: 'http://localhost:8080/delete/specific/complaintById/'+ dataId,
+		    type: 'DELETE',
+		    success: function(result) {
+		        location.reload();
+		    },
+			error : function(err){
+				alert(err);
+			}  
+		});
+});
+
+
+// edit a specific complaint from table
+$('table').on('click', '.edit', function(e){
+        e.preventDefault();
+        var dataId = $(this).attr("data-id");
+        // console.log(dataId);
+        var machineid = $(this).parents('tr').find("td[id='2']").attr('data-id1');
+        var phonenumber = $(this).parents('tr').find("td[id='3']").attr('data-id2');
+        var message = $(this).parents('tr').find("td[id='4']").attr('data-id3');
+
+        $('#exampleModal').modal({
+		    show: 'true'
+		});
+
+        $('input#machineid').val(machineid);
+        $('input#number').val(phonenumber);
+        $('textarea#message').val(message);
+
+        $('button#updatecomplaint').click(function(e){
+        	e.preventDefault();
+			var updatedmachineid = $('input#machineid').val();
+			var updatednumber = $('input#number').val();
+			var updatedmessage = $('textarea#message').val();
+
+			updatedetails= {}
+
+			updatedetails.machineid = updatedmachineid.toString()
+			updatedetails.phonenumber = updatednumber
+			updatedetails.problemmsg = updatedmessage
+
+
+	        $.ajax({
+			    url: 'http://localhost:8080/update/specific/complaintById/'+ dataId,
+			    type: 'PUT',
+			    data: updatedetails,
+			    success: function(result) {
+			    	console.log("yeah we got it");
+			        location.reload();
+			    },
+				error : function(err){
+					alert(err);
+				}  
+			});
+        })
+
+
+<<<<<<< HEAD
 
 $('table').on('click', '#btnnn', function(){
 	var rowEl = $(this).closest('tr');
@@ -30,7 +98,10 @@ $('table').on('click', '#btnnn', function(){
 			console.log(response);
 		}
 	});
+=======
+>>>>>>> 404a3ef45e8d98295dcb84e529db81e2ebb9aa9f
 });
+
 
 
 // POST AND CHECK PHONE NUMBER
